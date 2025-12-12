@@ -1,0 +1,145 @@
+
+.highlight-number {
+  background: #b3e5fc !important;
+}
+
+
+.conflict {
+  background: #ffcdd2 !important;
+  color: #b71c1c;
+}
+/* Board.css
+   CSS för Sudoku-brädan och dess celler. */
+
+.sudoku-board-wrapper {
+  background: #222;
+  box-shadow: 0 4px 32px #0004;
+  border-radius: 12px;
+  margin: 0 auto 32px auto;
+  display: inline-block;
+}
+
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  width: 100%;
+  max-width: 98vw;
+  aspect-ratio: 1 / 1;
+  gap: 0;
+  border: 4px solid #333;
+  background: transparent;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+ .sudoku-cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-weight: 700;
+  border: 1px solid #555;
+  background: #fff;
+  color: #222;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* Tjock grön kant runt varje 3x3-block */
+.sudoku-cell.block-top {
+  border-top: 2px solid #000;
+}
+.sudoku-cell.block-bottom {
+  border-bottom: 2px solid #000;
+}
+.sudoku-cell.block-left {
+  border-left: 2px solid #000;
+}
+.sudoku-cell.block-right {
+  border-right: 2px solid #000;
+}
+
+.sudoku-cell:hover {
+  background: #b3e5fc;
+  box-shadow: 0 0 8px 2px #90caf9;
+  z-index: 2;
+}
+
+.sudoku-cell.selected {
+  background: #bbdefb;
+  color: #0d47a1;
+}
+
+.sudoku-cell.given {
+  background: #f0f0f0;
+  color: #616161;
+}
+
+.sudoku-cell.correct {
+  background: #c8e6c9;
+  color: #388e3c;
+  animation: pop-correct 0.3s;
+}
+
+.sudoku-cell.incorrect {
+  background: #ffcdd2;
+  color: #b71c1c;
+  animation: shake-wrong 0.3s;
+}
+
+@keyframes pop-correct {
+  0% { transform: scale(1); }
+  60% { transform: scale(1.18); }
+  100% { transform: scale(1.09); }
+}
+
+@keyframes shake-wrong {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+.sudoku-cell.given {
+  background: #e0e7ef;
+  color: #2a4d7a;
+}
+
+.sudoku-cell.selected {
+  background: #b3e5fc;
+  box-shadow: 0px 0px 1px 1px #29b6f6;
+  z-index: 2;
+  transform: scale(1.01);
+}
+
+.sudoku-cell.filled {
+  animation: pop-in 0.18s cubic-bezier(.4,2,.6,1) 1;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.7); opacity: 0.5; }
+  80% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.sudoku-cell.incorrect {
+  color: #d32f2f;
+  background: #ffebee;
+  animation: shake 0.2s linear 1;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}

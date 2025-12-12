@@ -1,0 +1,23 @@
+/* Controls.css
+   CSS för kontrollpanelen och knappar. */
+
+.controls {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-bottom: 1.5em;
+}
+
+.controls button {
+  font-size: 1.1em;
+  padding: 0.5em 1.2em;
+  background: #e3e3e3;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  transition: background 0.2s, border 0.2s;
+}
+
+.controls button:hover {
+  background: #d0d0d0;
+  border: 1px solid #888;
+}
