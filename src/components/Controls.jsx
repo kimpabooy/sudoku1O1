@@ -55,6 +55,7 @@ export default function Controls({ game, setGame, startNew }) {
         <button onClick={() => startNew("medium")}>New Medium</button>
         <button onClick={() => startNew("hard")}>New Hard</button>
         <button onClick={() => startNew("expert")}>New Expert</button>
+        <button onClick={() => startNew("debugg")}>New Debugg</button>
       </div>
     </div>
   );
