@@ -8,6 +8,24 @@
   margin-bottom: 1.5em;
 }
 
+.controls-label {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.sudoku-controles-label {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
 .controls button {
   font-size: 1.1em;
   padding: 0.5em 1.2em;

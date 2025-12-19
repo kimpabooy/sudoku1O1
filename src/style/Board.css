@@ -32,7 +32,7 @@
   box-sizing: border-box;
 }
 
- .sudoku-cell {
+.sudoku-cell {
   width: 100%;
   aspect-ratio: 1 / 1;
   display: flex;
@@ -44,7 +44,6 @@
   background: #fff;
   color: #222;
   transition: background 0.2s, color 0.2s;
-  cursor: pointer;
   user-select: none;
   position: relative;
   z-index: 1;

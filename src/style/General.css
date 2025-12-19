@@ -1,3 +1,6 @@
+:root {
+  user-select: none;
+}
 /* Knappar för rätta */
 .check-btn {
   padding: 0.6em 2em;
@@ -6,13 +9,13 @@
   background: #1976d2;
   color: #fff;
   border: none;
-  cursor: pointer;
+  /* cursor: pointer; */
   margin-bottom: 8px;
   transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
 }
 .check-btn:disabled {
   background: #aaa;
-  cursor: not-allowed;
+  cursor: url('./images/pointers/pointerUnavailable.cur'), auto;
 }
 /* Mobilanpassning: ge marginal på sidorna */
 .sudoku-container {
@@ -38,14 +41,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* Mysig bakgrundsgradient */
   background: linear-gradient(135deg, #fbeee6 0%, #f7d9c4 40%, #eec9e2 100%);
   color: #222;
   min-height: 100vh;
+  cursor: url('./images/pointers/pointer.cur'), auto;
 }
 
 button {
-  cursor: pointer;
+  cursor: url('./images/pointers/pointer.cur'), auto;
   border-radius: 8px;
   border: none;
   padding: 0.38em 0.85em;
@@ -85,11 +88,7 @@ input, select {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  }
-  justify-content: flex-start;
-  padding: 32px 0 64px 0;
-  background: linear-gradient(135deg, #e3f2fd 0%, #f7f7f7 100%);
-
+}
 
 .sudoku-app-wrapper h1 {
   text-align: center;
