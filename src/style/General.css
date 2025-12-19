@@ -15,8 +15,7 @@
 }
 .check-btn:disabled {
   background: #aaa;
-  cursor: url('/pointers/pointerUnavailable.cur'), auto;
-  /* cursor: not-allowed; */
+  cursor: url('./images/pointers/pointerUnavailable.cur'), auto;
 }
 /* Mobilanpassning: ge marginal på sidorna */
 .sudoku-container {
@@ -45,11 +44,11 @@ body {
   background: linear-gradient(135deg, #fbeee6 0%, #f7d9c4 40%, #eec9e2 100%);
   color: #222;
   min-height: 100vh;
-  cursor: url('/pointers/pointer.cur'), auto;
+  cursor: url('./images/pointers/pointer.cur'), auto;
 }
 
 button {
-  cursor: url('/pointers/pointer.cur'), auto;
+  cursor: url('./images/pointers/pointer.cur'), auto;
   border-radius: 8px;
   border: none;
   padding: 0.38em 0.85em;

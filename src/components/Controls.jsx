@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Controls({ game, setGame, startNew }) {
   const [r, c] = game.selected;
 
-  const enterValue = (num) => {
+  const playClick = () => {
+    const audio = new Audio("/sounds/click.mp3");
+    audio.play();
+  };
+
+  const enterValue = (num, playSound = true) => {
     if (r == null || c == null) return;
     if (game.givens[r][c]) return;
+    if (playSound) playClick();
     const board = game.board.map((row) => row.slice());
     // Om samma siffra trycks igen, rensa cellen
     if (board[r][c] === num) {
@@ -15,6 +21,17 @@ export default function Controls({ game, setGame, startNew }) {
     }
     setGame({ ...game, board });
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Siffror 1-9 på tangentbordet
+      if (e.key >= "1" && e.key <= "9") {
+        enterValue(Number(e.key), true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [r, c, game.givens, game.board]);
 
   return (
     <div
@@ -35,11 +52,11 @@ export default function Controls({ game, setGame, startNew }) {
         }}
       >
         {Array.from({ length: 9 }, (_, i) => (
-          <button key={i} onClick={() => enterValue(i + 1)}>
+          <button key={i} onClick={() => enterValue(i + 1, true)}>
             {i + 1}
           </button>
         ))}
-        <button onClick={() => enterValue(0)}>Clear</button>
+        <button onClick={() => enterValue(0, true)}>Clear</button>
       </div>
       <div
         style={{
