@@ -6,8 +6,13 @@ import Controls from "./components/Controls";
 import { generatePuzzle } from "./sudoku/engine";
 
 export default function App() {
+  const RAW_CODE = "C25G03AAA0AB7C0524B"; // 0 represents a space
+  const ACTIVATION_URL = "https://example.com/activate"; // TODO: replace with your activation page URL
   const [game, setGame] = useState(generatePuzzle("medium"));
   const [checkResult, setCheckResult] = useState(null); // null | true | false
+  const [showCodeEntry, setShowCodeEntry] = useState(false);
+  const [codeInput, setCodeInput] = useState("");
+  const [codeStatus, setCodeStatus] = useState(null); // null | 'ok' | 'wrong'
 
   // Tangentbordsstöd: fyll i markerad cell med 1-9
   useEffect(() => {
@@ -59,6 +64,14 @@ export default function App() {
     setCheckResult(correct);
   };
 
+  const handleCodeCheck = () => {
+    const normalized = codeInput
+      .trim()
+      .toUpperCase()
+      .replace(/\s+/g, "0");
+    setCodeStatus(normalized === RAW_CODE ? "ok" : "wrong");
+  };
+
   return (
     <div className="sudoku-container">
       <div className="sudoku-app-wrapper">
@@ -100,6 +113,58 @@ export default function App() {
               </p>
 
               <p><strong>C25G03AAA0AB7C0524B</strong></p>
+
+              {!showCodeEntry ? (
+                <div style={{ marginTop: 12 }}>
+                  <button
+                    className="check-btn"
+                    onClick={() => setShowCodeEntry(true)}
+                  >
+                    Aktivera kod
+                  </button>
+                </div>
+              ) : (
+                <div style={{ marginTop: 12 }}>
+                  <input
+                    type="text"
+                    value={codeInput}
+                    onChange={(e) => setCodeInput(e.target.value)}
+                    placeholder="Ange din kod här..."
+                    style={{
+                      padding: "8px 10px",
+                      borderRadius: 8,
+                      border: "1px solid #ccc",
+                      maxWidth: 360,
+                      width: "100%",
+                    }}
+                  />
+                  <div style={{ marginTop: 8 }}>
+                    <button className="check-btn" onClick={handleCodeCheck}>
+                      Verifiera
+                    </button>
+                  </div>
+                  {codeStatus === "ok" && (
+                    <div style={{ marginTop: 10 }}>
+                      <span style={{ color: "#2e7d32" }}>Koden är korrekt!</span>
+                      <div style={{ marginTop: 6 }}>
+                        <a
+                          href={`${ACTIVATION_URL}?code=${encodeURIComponent(codeInput.trim())}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ textDecoration: "underline" }}
+                        >
+                          Gå vidare
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  {codeStatus === "wrong" && (
+                    <div style={{ marginTop: 10, color: "#b71c1c" }}>
+                      Fel kod. Kontrollera grupperingen och mellanslagen.
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
           {checkResult === false && (
@@ -112,6 +177,7 @@ export default function App() {
               }}
             >
               Tyvärr, något är fel.
+              <p>Kom ihåg: I sudoku finns ingen nolla. Försök att gruppera koden i grupper om 4 tecken.</p>
             </div>
           )}
         </div>
