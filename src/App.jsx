@@ -80,9 +80,26 @@ export default function App() {
                 fontWeight: 600,
                 fontSize: "1.2em",
                 marginTop: 8,
+                marginBottom: 16,
               }}
             >
               Grattis! Allt är rätt!
+              <p>
+                I sudokuns värld finns regler att följa,  
+                från <b>1</b> till <b>9</b>, varken mera, eller mindre.
+              </p>
+
+              <p>
+                När siffror inte räcker för att allt ska bli rätt,  
+                får bokstäver hjälpa till, så mönstret blir komplett.
+              </p>
+
+              <p>
+                Där något bryter ordning i sudokuns värld, låt rummet stå kvar,  
+                och samla den funna koden, nu fyra i rad.
+              </p>
+
+              <p><strong>C25G03AAA0AB7C0524B</strong></p>
             </div>
           )}
           {checkResult === false && (
