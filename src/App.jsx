@@ -6,8 +6,9 @@ import Controls from "./components/Controls";
 import { generatePuzzle } from "./sudoku/engine";
 
 export default function App() {
-  const RAW_CODE = import.meta.env.VITE_RAW_CODE;
-  const ACTIVATION_URL = import.meta.env.VITE_ACTIVATION_URL;
+  const RAW_CODE = "C25G3AAAAB7C524B";
+  const ACTIVATION_URL = "https://happy-day.com/account/login?return_url=%2Faccount";
+  const EXPECTED_CODE = "C25G 3AAA AB7C 524B";
   const [game, setGame] = useState(generatePuzzle("medium"));
   const [checkResult, setCheckResult] = useState(null); // null | true | false
   const [codeInput, setCodeInput] = useState("");
@@ -65,8 +66,7 @@ export default function App() {
 
   const handleCodeCheck = () => {
     const formatted = codeInput.trim().toUpperCase();
-    const expected = RAW_CODE.replace(/(.{4})/g, "$1 ").trim();
-    setCodeStatus(formatted === expected ? "ok" : "wrong");
+    setCodeStatus(formatted === EXPECTED_CODE ? "ok" : "wrong");
   };
 
   return (
@@ -108,7 +108,7 @@ export default function App() {
                 Där något bryter ordning i sudokuns värld, låt rummet stå kvar och samla den funna koden, nu fyra i rad.
               </p>
 
-              <p><strong>C25G03AAA0AB7C0524B</strong></p>
+              <p><strong>{EXPECTED_CODE}</strong></p>
 
               <div style={{ marginTop: 12 }}>
                 <input
