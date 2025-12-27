@@ -6,7 +6,7 @@ import Controls from "./components/Controls";
 import { generatePuzzle } from "./sudoku/engine";
 
 export default function App() {
-  const RAW_CODE = "C25G3AAAAB7C524B";
+  const RAW_CODE = "C25G03AAA0AB7C0524B";
   const ACTIVATION_URL = "https://happy-day.com/account/login?return_url=%2Faccount";
   const EXPECTED_CODE = "C25G 3AAA AB7C 524B";
   const [game, setGame] = useState(generatePuzzle("medium"));
@@ -108,7 +108,7 @@ export default function App() {
                 Där något bryter ordning i sudokuns värld, låt rummet stå kvar och samla den funna koden, nu fyra i rad.
               </p>
 
-              <p><strong>{EXPECTED_CODE}</strong></p>
+              <p><strong>{RAW_CODE}</strong></p>
 
               <div style={{ marginTop: 12 }}>
                 <input
