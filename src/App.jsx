@@ -6,8 +6,8 @@ import Controls from "./components/Controls";
 import { generatePuzzle } from "./sudoku/engine";
 
 export default function App() {
-  const RAW_CODE = "C25G03AAA0AB7C0524B"; // 0 represents a space
-  const ACTIVATION_URL = "https://example.com/activate"; // TODO: replace with your activation page URL
+  const RAW_CODE = import.meta.env.VITE_RAW_CODE;
+  const ACTIVATION_URL = import.meta.env.VITE_ACTIVATION_URL;
   const [game, setGame] = useState(generatePuzzle("medium"));
   const [checkResult, setCheckResult] = useState(null); // null | true | false
   const [codeInput, setCodeInput] = useState("");
@@ -64,11 +64,9 @@ export default function App() {
   };
 
   const handleCodeCheck = () => {
-    const normalized = codeInput
-      .trim()
-      .toUpperCase()
-      .replace(/\s+/g, "0");
-    setCodeStatus(normalized === RAW_CODE ? "ok" : "wrong");
+    const formatted = codeInput.trim().toUpperCase();
+    const expected = RAW_CODE.replace(/(.{4})/g, "$1 ").trim();
+    setCodeStatus(formatted === expected ? "ok" : "wrong");
   };
 
   return (
@@ -88,7 +86,7 @@ export default function App() {
           {checkResult === true && (
             <div
               style={{
-                color: "#388e3c",
+                color: "#262c26ff",
                 fontWeight: 600,
                 fontSize: "1.2em",
                 marginTop: 8,
@@ -107,8 +105,7 @@ export default function App() {
               </p>
 
               <p>
-                Där något bryter ordning i sudokuns värld, låt rummet stå kvar,  
-                och samla den funna koden, nu fyra i rad.
+                Där något bryter ordning i sudokuns värld, låt rummet stå kvar och samla den funna koden, nu fyra i rad.
               </p>
 
               <p><strong>C25G03AAA0AB7C0524B</strong></p>
@@ -149,7 +146,7 @@ export default function App() {
                 )}
                 {codeStatus === "wrong" && (
                   <div style={{ marginTop: 10, color: "#b71c1c" }}>
-                    Fel kod. Kontrollera grupperingen.
+                    Fel kod. Försök igen.
                   </div>
                 )}
               </div>
