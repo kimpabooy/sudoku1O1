@@ -1,3 +1,6 @@
+:root {
+  user-select: none;
+}
 /* Knappar för rätta */
 .check-btn {
   padding: 0.6em 2em;
@@ -6,19 +9,19 @@
   background: #1976d2;
   color: #fff;
   border: none;
-  cursor: pointer;
+  /* cursor: pointer; */
   margin-bottom: 8px;
   transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
 }
 .check-btn:disabled {
   background: #aaa;
-  cursor: not-allowed;
+  cursor: url('./images/pointers/pointerUnavailable.cur'), auto;
 }
 /* Mobilanpassning: ge marginal på sidorna */
 .sudoku-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 420px;
+    max-width: 520px;
     padding-left: 16px;
     padding-right: 16px;
     box-sizing: border-box;
@@ -27,8 +30,8 @@
 @media (max-width: 600px) {
   .sudoku-container {
     max-width: 100%;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 /* General.css
@@ -38,14 +41,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* Mysig bakgrundsgradient */
   background: linear-gradient(135deg, #fbeee6 0%, #f7d9c4 40%, #eec9e2 100%);
   color: #222;
   min-height: 100vh;
+  cursor: url('./images/pointers/pointer.cur'), auto;
 }
 
 button {
-  cursor: pointer;
+  cursor: url('./images/pointers/pointer.cur'), auto;
   border-radius: 8px;
   border: none;
   padding: 0.38em 0.85em;

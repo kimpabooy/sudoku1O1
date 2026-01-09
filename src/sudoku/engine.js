@@ -46,6 +46,11 @@ export function generatePuzzle(difficulty = "medium") {
 
 
     function makePuzzle(solution, difficulty) {
+        // Om debug-läge, returnera en helt ifylld plan (ingen borttagen siffra)
+        // ta bort vid produktion
+        if (difficulty === "debugg") {
+            return solution.map((row) => row.slice());
+        }
         const puzzle = solution.map((row) => row.slice());
         let removals;
         if (difficulty === "easy") removals = 36;
@@ -54,14 +59,10 @@ export function generatePuzzle(difficulty = "medium") {
         else if (difficulty === "expert") removals = 60;
         else removals = 45;
         const positions = Array.from({ length: 81 }, (_, i) => i);
-
-
         for (let i = positions.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [positions[i], positions[j]] = [positions[j], positions[i]];
         }
-
-
         let removed = 0;
         for (let p of positions) {
             if (removed >= removals) break;
@@ -70,7 +71,6 @@ export function generatePuzzle(difficulty = "medium") {
             puzzle[r][c] = 0;
             removed++;
         }
-
         return puzzle;
     }
 

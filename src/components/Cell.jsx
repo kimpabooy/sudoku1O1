@@ -6,9 +6,7 @@ export default function Cell({
   value,
   given,
   selected,
-  correctValue, // används ej längre för styling
   selectCell,
-  setValue,
   className = "",
   markedValue,
   board,
@@ -45,7 +43,12 @@ export default function Cell({
     if (isConflict) cellClass += " conflict";
   }
 
-  const handleClick = () => selectCell(r, c);
+  const handleClick = () => {
+    // Spela upp klick-ljud
+    const audio = new Audio("/sounds/click.mp3");
+    audio.play();
+    selectCell(r, c);
+  };
 
   return (
     <div className={cellClass} onClick={handleClick}>
