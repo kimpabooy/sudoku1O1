@@ -94,7 +94,6 @@ export default function App() {
               }}
             >
               Tyvärr, något är fel.
-              <p>Kom ihåg: I sudoku finns ingen finns bara siffrorna 1-9</p>
             </div>
           )}
         </div>

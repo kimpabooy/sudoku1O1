@@ -53,11 +53,11 @@ export function generatePuzzle(difficulty = "medium") {
         }
         const puzzle = solution.map((row) => row.slice());
         let removals;
-        if (difficulty === "easy") removals = 36;
-        else if (difficulty === "medium") removals = 45;
-        else if (difficulty === "hard") removals = 54;
-        else if (difficulty === "expert") removals = 60;
-        else removals = 45;
+        if (difficulty === "easy") removals = 25;
+        else if (difficulty === "medium") removals = 40;
+        else if (difficulty === "hard") removals = 55;
+        else if (difficulty === "expert") removals = 70;
+        else removals = 40;
         const positions = Array.from({ length: 81 }, (_, i) => i);
         for (let i = positions.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
