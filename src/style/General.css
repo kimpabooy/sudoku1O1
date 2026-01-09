@@ -86,10 +86,6 @@ input, select {
   align-items: center;
   min-height: 100vh;
   }
-  justify-content: flex-start;
-  padding: 32px 0 64px 0;
-  background: linear-gradient(135deg, #e3f2fd 0%, #f7f7f7 100%);
-
 
 .sudoku-app-wrapper h1 {
   text-align: center;
