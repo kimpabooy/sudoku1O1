@@ -6,14 +6,8 @@ import Controls from "./components/Controls";
 import { generatePuzzle } from "./sudoku/engine";
 
 export default function App() {
-  const RAW_CODE = "C25G03AAA0AB7C0524B";
-  const ACTIVATION_URL = "https://happy-day.com/account/login?return_url=%2Faccount";
-  const EXPECTED_CODE = "C25G 3AAA AB7C 524B";
   const [game, setGame] = useState(generatePuzzle("medium"));
   const [checkResult, setCheckResult] = useState(null); // null | true | false
-  const [codeInput, setCodeInput] = useState("");
-  const [codeStatus, setCodeStatus] = useState(null); // null | 'ok' | 'wrong'
-
   // Tangentbordsstöd: fyll i markerad cell med 1-9
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -64,11 +58,6 @@ export default function App() {
     setCheckResult(correct);
   };
 
-  const handleCodeCheck = () => {
-    const formatted = codeInput.trim().toUpperCase();
-    setCodeStatus(formatted === EXPECTED_CODE ? "ok" : "wrong");
-  };
-
   return (
     <div className="sudoku-container">
       <div className="sudoku-app-wrapper">
@@ -86,70 +75,13 @@ export default function App() {
           {checkResult === true && (
             <div
               style={{
-                color: "#262c26ff",
+                color: "#2e7d32",
                 fontWeight: 600,
                 fontSize: "1.2em",
                 marginTop: 8,
-                marginBottom: 16,
               }}
             >
-              Grattis! Allt är rätt!
-              <p>
-                I sudokuns värld finns regler att följa,  
-                från <b>1</b> till <b>9</b>, varken mera, eller mindre.
-              </p>
-
-              <p>
-                När siffror inte räcker för att allt ska bli rätt,  
-                får bokstäver hjälpa till, så mönstret blir komplett.
-              </p>
-
-              <p>
-                Där något bryter ordning i sudokuns värld, låt rummet stå kvar och samla den funna koden, nu fyra i rad.
-              </p>
-
-              <p><strong>{RAW_CODE}</strong></p>
-
-              <div style={{ marginTop: 12 }}>
-                <input
-                  type="text"
-                  value={codeInput}
-                  onChange={(e) => setCodeInput(e.target.value)}
-                  placeholder="Ange din kod här..."
-                  style={{
-                    padding: "8px 10px",
-                    borderRadius: 8,
-                    border: "1px solid #ccc",
-                    maxWidth: 360,
-                    width: "100%",
-                  }}
-                />
-                <div style={{ marginTop: 8 }}>
-                  <button className="check-btn" onClick={handleCodeCheck}>
-                    Verifiera
-                  </button>
-                </div>
-                {codeStatus === "ok" && (
-                  <div style={{ marginTop: 10 }}>
-                    <span style={{ color: "#2e7d32" }}>Koden är korrekt!</span>
-                    <div style={{ marginTop: 6 }}>
-                      <a
-                        href={`${ACTIVATION_URL}?code=${encodeURIComponent(codeInput.trim())}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{ textDecoration: "underline" }}
-                      >
-                        Gå vidare
-                      </a>
-                    </div>
-                  </div>
-                )}
-                {codeStatus === "wrong" && (
-                  <div style={{ marginTop: 10, color: "#b71c1c" }}>
-                    Fel kod. Försök igen.
-                  </div>
-                )}
-              </div>
+              Alla Rätt!
             </div>
           )}
           {checkResult === false && (
