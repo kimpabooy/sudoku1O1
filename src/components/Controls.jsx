@@ -13,7 +13,7 @@ export default function Controls({ game, setGame, startNew }) {
     if (game.givens[r][c]) return;
     if (playSound) playClick();
     const board = game.board.map((row) => row.slice());
-    // Om samma siffra trycks igen, rensa cellen
+    // rensa cellen om samma knapp trycks in igen
     if (board[r][c] === num) {
       board[r][c] = 0;
     } else {
